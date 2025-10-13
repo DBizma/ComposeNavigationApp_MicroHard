@@ -126,6 +126,8 @@ private fun AppDrawer(onNavigate: (String) -> Unit) {
             selected = false,
             onClick = { onNavigate(Routes.SETTINGS) }
         )
+
+        NavigationDrawerItem(label = { Text("About") },    selected = false, onClick = { onNavigate(Routes.ABOUT) })
     }
 }
 
@@ -141,5 +143,10 @@ private fun MainNavHost(navController: NavHostController) {
         composable(Routes.PROFILE) { ProfileScreen() }
         composable(Routes.SETTINGS) { SettingsScreen() }
         composable(Routes.ADD) { AddScreen(navController) }
+        composable(Routes.ABOUT) { AboutScreen() }
     }
 }
+
+
+
+

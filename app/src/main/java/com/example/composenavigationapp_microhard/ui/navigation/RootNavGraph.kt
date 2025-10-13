@@ -9,28 +9,54 @@ import com.example.composenavigationapp_microhard.ui.screens.PlaceholderHomeScre
 import com.example.composenavigationapp_microhard.ui.screens.SplashScreen
 
 @Composable
-fun RootNavGraph(navController: NavHostController) {
+fun RootNavGraph(
+    navController: NavHostController
+) {
     NavHost(
         navController = navController,
         startDestination = Routes.SPLASH
     ) {
+        // Splash tetap sama
         composable(Routes.SPLASH) {
-            SplashScreen(
-                onFinished = {
-                    navController.navigate(Routes.MAIN_GRAPH) {
-                        popUpTo(Routes.SPLASH) { inclusive = true }
-                        launchSingleTop = true
-                    }
+            SplashScreen(onFinished = {
+                navController.navigate(Routes.MAIN_GRAPH) {
+                    popUpTo(Routes.SPLASH) { inclusive = true }
+                    launchSingleTop = true
                 }
-            )
+            })
         }
-        navigation(
-            startDestination = Routes.HOME,
-            route = Routes.MAIN_GRAPH
-        ) {
-            composable(Routes.HOME) {
-                PlaceholderHomeScreen()
-            }
+
+        // Ganti: sebelumnya 'navigation(route = MAIN_GRAPH) { ... }'
+        // Sekarang: satu composable yang menampilkan MainScaffold
+        composable(Routes.MAIN_GRAPH) {
+            MainScaffold() // kita buat di langkah 3.2
         }
     }
 }
+
+//@Composable
+//fun RootNavGraph(navController: NavHostController) {
+//    NavHost(
+//        navController = navController,
+//        startDestination = Routes.SPLASH
+//    ) {
+//        composable(Routes.SPLASH) {
+//            SplashScreen(
+//                onFinished = {
+//                    navController.navigate(Routes.MAIN_GRAPH) {
+//                        popUpTo(Routes.SPLASH) { inclusive = true }
+//                        launchSingleTop = true
+//                    }
+//                }
+//            )
+//        }
+//        navigation(
+//            startDestination = Routes.HOME,
+//            route = Routes.MAIN_GRAPH
+//        ) {
+//            composable(Routes.HOME) {
+//                PlaceholderHomeScreen()
+//            }
+//        }
+//    }
+//}

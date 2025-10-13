@@ -16,6 +16,8 @@ import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.*
+import com.example.composenavigationapp.ui.navigation.HomeScreen
+import com.example.composenavigationapp.ui.navigation.DetailScreen
 import com.example.composenavigationapp_microhard.ui.screens.*
 import kotlinx.coroutines.launch
 

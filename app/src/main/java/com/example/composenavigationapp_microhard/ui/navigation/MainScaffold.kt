@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.*
@@ -26,9 +27,11 @@ sealed class BottomItem(val route: String, val label: String, val icon: androidx
     data object Home : BottomItem(Routes.HOME, "Home", Icons.Filled.Home)
     data object Profile : BottomItem(Routes.PROFILE, "Profile", Icons.Filled.Person)
     data object Settings : BottomItem(Routes.SETTINGS, "Settings", Icons.Filled.Settings)
+
+    data object About : BottomItem(Routes.ABOUT, "About", Icons.Filled.Info)
 }
 
-private val bottomItems = listOf(BottomItem.Home, BottomItem.Profile, BottomItem.Settings)
+private val bottomItems = listOf(BottomItem.Home, BottomItem.Profile, BottomItem.Settings, BottomItem.About)
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -129,7 +132,11 @@ private fun AppDrawer(onNavigate: (String) -> Unit) {
             onClick = { onNavigate(Routes.SETTINGS) }
         )
 
-        NavigationDrawerItem(label = { Text("About") },    selected = false, onClick = { onNavigate(Routes.ABOUT) })
+        NavigationDrawerItem(icon = {
+            Icon(Icons.Filled.Info, contentDescription = null) },
+            label = { Text("About") },
+            selected = false,
+            onClick = { onNavigate(Routes.ABOUT) })
     }
 }
 
